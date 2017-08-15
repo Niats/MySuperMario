@@ -5,8 +5,8 @@ from pygame import *
 import pyganim
 import os
 
-MONSTER_WIDTH = 100
-MONSTER_HEIGHT = 100
+MONSTER_WIDTH = 80
+MONSTER_HEIGHT = 80
 MONSTER_COLOR = "#1a1a00"
 ICON_DIR = os.path.dirname(__file__)
 
