@@ -159,3 +159,11 @@ class Player(sprite.Sprite):
                     if yvel < 0:                      # якщо рухається вверх
                         self.rect.top = p.rect.bottom # то не рухається вниз
                         self.yvel = 0                 # тоді енергія прижка пропадає
+
+    def teleporting(self, goX, goY):
+        self.rect.x = goX
+        self.rect.y = goY
+        
+    def die(self):
+        time.wait(500)
+        self.teleporting(self.startX, self.startY) # переміщення на початкові координа
