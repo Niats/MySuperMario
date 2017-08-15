@@ -6,13 +6,16 @@ import pyganim
 import os
 
 MOVE_SPEED = 7
+MOVE_EXTRA_SPEED = 2.5 # пришвидшення
 WIDTH = 22
 HEIGHT = 32
 COLOR =  "#888888"
 JUMP_POWER = 10
-GRAVITY = 0.35 # Сила, яка буде тягнути в низ
+JUMP_EXTRA_POWER = 1  # додаткова сила прижку
+GRAVITY = 0.35 # Сила, яка тягне героя в низ
 ANIMATION_DELAY = 0.1 # швидкість зміни кадрів
-ICON_DIR = os.path.dirname(__file__) #  повний шлях до каталогу з файлами
+ANIMATION_SUPER_SPEED_DELAY = 0.05 # швидкість зміни кадрів при пришвидшенні прижка
+ICON_DIR = os.path.dirname(__file__) #  Повний шлях до каталогу з файлами
 
 ANIMATION_RIGHT = [('%s/mario/r1.png' % ICON_DIR),
             ('%s/mario/r2.png' % ICON_DIR),
