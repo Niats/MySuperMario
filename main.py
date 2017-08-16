@@ -8,12 +8,13 @@ from player import *
 from blocks import *
 from monsters import *
 
+#response = raw_input("Please enter player name: ")
+    
 #Оголошуємо змінні
 WIN_WIDTH = 800 #Ширина вікна
 WIN_HEIGHT = 500 # Висота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT) # Групуємо ширну і висоту в одну змінну
 BACKGROUND_COLOR = "#000000"
-
 FILE_DIR = os.path.dirname(__file__)
 
 class Camera(object):
@@ -26,6 +27,7 @@ class Camera(object):
 
     def update(self, target):
         self.state = self.camera_func(self.state, target.rect)
+    
         
 def camera_configure(camera, target_rect):
     l, t, _, _ = target_rect
