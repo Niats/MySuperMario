@@ -26,7 +26,7 @@ class Monster(sprite.Sprite):
         self.maxLengthLeft = maxLengthLeft # максимальний лях в одн сторону
         self.maxLengthUp= maxLengthUp # по вертикалі
         self.xvel = left # рух по горизонталі, 0 - стоїть
-        self.yvel = up # вертикалі, 0 - не рухається
+        self.yvel = up # рух вертикалі, 0 - не рухається
         boltAnim = []
         for anim in ANIMATION_MONSTERHORYSONTAL:
             boltAnim.append((anim, 0.3))

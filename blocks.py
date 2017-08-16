@@ -28,6 +28,7 @@ class Platform(sprite.Sprite):
         self.image.set_colorkey(Color(PLATFORM_COLOR))
         self.rect = Rect(x, y, PLATFORM_WIDTH, PLATFORM_HEIGHT)
         
+#клас, наследується від Platform      
 class BlockDie(Platform):
     def __init__(self, x, y):
         Platform.__init__(self, x, y)

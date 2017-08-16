@@ -34,6 +34,8 @@ ANIMATION_JUMP_RIGHT = [('%s/mario/jr.png' % ICON_DIR, 0.1)]
 ANIMATION_JUMP = [('%s/mario/j.png' % ICON_DIR, 0.1)]
 ANIMATION_STAY = [('%s/mario/0.png' % ICON_DIR, 0.1)]
 
+#створюємо клас, який наслідується від класу pygame.sprite.Sprite, тим самим присвоїмо всі характеристики спрайта.
+
 class Player(sprite.Sprite):
     def __init__(self, x, y):
         sprite.Sprite.__init__(self)
@@ -83,7 +85,7 @@ class Player(sprite.Sprite):
         
 
     def update(self, left, right, up, running, platforms):
-        
+#поведінка героя при пришвидшенні     
         if up:
             if self.onGround: # пригати якщо можемо відштовхнутися від землі
                 self.yvel = -JUMP_POWER
@@ -134,11 +136,12 @@ class Player(sprite.Sprite):
 
         self.rect.x += self.xvel # переносимо своє положення на xvel
         self.collide(self.xvel, 0, platforms)
-   
+        
+#в методі відбувається перевірка на пересікання координат героя і платформи
     def collide(self, xvel, yvel, platforms):
         for p in platforms:
             if sprite.collide_rect(self, p): # якщо є пересікання платформи з іграком
-                if isinstance(p, blocks.BlockDie) or isinstance(p, monsters.Monster): # якщо перескакуємо - blocks.BlockDie чи Monster
+                if isinstance(p, blocks.BlockDie) or isinstance(p, monsters.Monster): # якщо пересікаємо - blocks.BlockDie чи Monster
                        self.die()# вмираємо
                 elif isinstance(p, blocks.BlockTeleport):
                        self.teleporting(p.goX, p.goY)
@@ -146,24 +149,25 @@ class Player(sprite.Sprite):
                        self.winner = True #перемогли!
                 else:
                     if xvel > 0:                      # якщо рухається вправо
-                        self.rect.right = p.rect.left # то не рухається вліво
+                        self.rect.right = p.rect.left 
 
                     if xvel < 0:                      
                         self.rect.left = p.rect.right 
 
                     if yvel > 0:                      # якщо подає вниз
-                        self.rect.bottom = p.rect.top # то не падає в гору
+                        self.rect.bottom = p.rect.top 
                         self.onGround = True          # якщо стає на опору
                         self.yvel = 0                 # то енергія падіння пропадає
 
                     if yvel < 0:                      # якщо рухається вверх
-                        self.rect.top = p.rect.bottom # то не рухається вниз
+                        self.rect.top = p.rect.bottom 
                         self.yvel = 0                 # тоді енергія прижка пропадає
 
     def teleporting(self, goX, goY):
         self.rect.x = goX
         self.rect.y = goY
         
+#поведінка героя при смерті       
     def die(self):
         time.wait(500)
         self.teleporting(self.startX, self.startY) # переміщення на початкові координати

@@ -17,6 +17,7 @@ DISPLAY = (WIN_WIDTH, WIN_HEIGHT) # Групуємо ширну і висоту 
 BACKGROUND_COLOR = "#000000"
 FILE_DIR = os.path.dirname(__file__)
 
+#прибираємо обмеження в розмірі вікна за допомогою динамічної камери
 class Camera(object):
     def __init__(self, camera_func, width, height):
         self.camera_func = camera_func
@@ -60,7 +61,7 @@ def loadLevel():
         if line[0] != "": # якщо рядок не пустий
          commands = line.split() # розбиваємо його на окремі команди
          if len(commands) > 1: #якщо к-ть команд > 1, то шукаємо їх
-            if commands[0] == "player": # якщо перша - player
+            if commands[0] == "player": # якщо перша команда - player
                 playerX= int(commands[1]) # то записуємо координати героя
                 playerY = int(commands[2])
             if commands[0] == "portal": # якщо перша команда portal, то створюємо
@@ -102,6 +103,7 @@ def main():
                 bd = BlockDie(x,y)
                 entities.add(bd)
                 platforms.append(bd)
+# створюємо принцесу
             if col == "P":
                 pr = Princess(x,y)
                 entities.add(pr)
@@ -111,7 +113,9 @@ def main():
             x += PLATFORM_WIDTH #блоки платформи ставлятся на ширині блоків
         y += PLATFORM_HEIGHT    #то саме з висотою
         x = 0                   #на кожній новій строці начинаємо з нуля
-    
+        
+#створюємо екземпляр камери
+
     total_level_width  = len(level[0])*PLATFORM_WIDTH # Вираховуємо фактичну ширину рівня уровня
     total_level_height = len(level)*PLATFORM_HEIGHT   # Висоту
     
@@ -119,7 +123,7 @@ def main():
     
     while not hero.winner: # Основний цикл програми
         timer.tick(60)
-        for e in pygame.event.get(): # Обробляємо події
+        for e in pygame.event.get(): # Обробляємо події при натисканні шіфта
             if e.type == QUIT:
                 raise SystemExit, "QUIT"
             if e.type == KEYDOWN and e.key == K_UP:
@@ -141,8 +145,8 @@ def main():
                 running = False
 
         screen.blit(bg, (0,0))      # Кожну ітерацію потрібно все перемальовути 
-
-        animatedEntities.update() 
+#група спрайтів, яка має в собі анімовані блоки
+        animatedEntities.update() #показуємо анімацію
         monsters.update(platforms) 
         camera.update(hero)  # централізуємо камеру віповідно до героя
         hero.update(left, right, up, running, platforms) 
