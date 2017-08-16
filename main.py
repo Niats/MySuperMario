@@ -8,7 +8,7 @@ from player import *
 from blocks import *
 from monsters import *
 
-#response = raw_input("Please enter player name: ")
+response = raw_input("Please enter player name: ")
     
 #Оголошуємо змінні
 WIN_WIDTH = 800 #Ширина вікна
